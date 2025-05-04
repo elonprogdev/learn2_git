@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>"Learn project"</title>
+</head>
+<body>
+    
+
+<h1>"Learn project"</h1>
+<h3>Добро пожаловать на наш сайт!</h3>
+
+<!-- <img src="  https://th.bing.com/th/id/R.192ae25c5ba25208d0e236441fe6fad5?rik=%2fDR%2bqUugTsWmvg&riu=http%3a%2f%2fpngimg.com%2fuploads%2fchuck_norris%2fchuck_norris_PNG6.png&ehk=wJXlRI7dq%2fogHspl2oZ42U%2bvXbkqUJuYxPWNMGvGIDw%3d&risl=&pid=ImgRaw&r=0   " width ="250", height = "250"/> -->
+<br>
+<br>
+
+<p>Сегодняшняя дата: <span id="current-date"></span></p>
+
+  <script>
+    const dateElement = document.getElementById("current-date");
+    const currentDate = new Date();
+
+    // Формат: DD.MM.YYYY
+    const formattedDate = currentDate.toLocaleDateString("ru-RU");
+    dateElement.textContent = formattedDate;
+  </script>
+</body>
+</html>
+
+<input type="text" id="name" placeholder="Enter your name" required/>
+<br>
+<br>
+<button onclick="sendName()">Send</button>
+<br>
+<span id="result"></span>
+<br>
+<script>
+    let socket = io();
+    
+    socket.on("connect", () => { console.log('<< Connected to server!') });
+
+    socket.on("response", function(info) {
+        document.getElementById("result").textContent = info;
+    });
+
+    socket.on('response', (msg) => { console.log(`Server received ${msg}`)})
+    
+    function sendName() {
+        socket.emit("guess", document.getElementById("name").value,
+        document.getElementById("name").value, );
+    }
+
+</script>
+
+<br>
+<h3>
+    <a href="/about">About us</a>
+<br>
+</body>
+</html>
