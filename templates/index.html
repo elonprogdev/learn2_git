@@ -33,25 +33,9 @@
 <br>
 <button onclick="sendName()">Send</button>
 <br>
-<span id="result"></span>
+
 <br>
-<script>
-    let socket = io();
-    
-    socket.on("connect", () => { console.log('<< Connected to server!') });
 
-    socket.on("response", function(info) {
-        document.getElementById("result").textContent = info;
-    });
-
-    socket.on('response', (msg) => { console.log(`Server received ${msg}`)})
-    
-    function sendName() {
-        socket.emit("guess", document.getElementById("name").value,
-        document.getElementById("name").value, );
-    }
-
-</script>
 
 <br>
 <h3>
